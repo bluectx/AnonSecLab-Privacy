@@ -41,7 +41,7 @@ See also:
     <img
       alt="AnonSecLab Privacy Tools application"
       src="img/screenshot.png?raw=true"
-      style="width: 100%; max-width: 1800px; height: auto; display: block; margin: 0 auto;"
+      style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
     />
   </a>
 </p>

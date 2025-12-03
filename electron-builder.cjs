@@ -41,6 +41,8 @@ module.exports = {
     category: 'Utility',
     desktop: {
       Icon: 'anonseclab-privacy',
+      Name: 'AnonSecLab Privacy Tools',
+      Exec: 'anonseclab-privacy',
     },
   },
   appImage: {
