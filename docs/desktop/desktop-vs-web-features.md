@@ -1,38 +1,38 @@
-# Desktop vs. Web Features
+# Desktop Application Features
 
-This table outlines the differences between the desktop and web versions of `privacy.sexy`.
+AnonSecLab Privacy Tools is a **desktop-only application** available for Windows, macOS, and Linux.
 
-| Feature | Desktop | Web |
-| ------- | ------- | --- |
-| [Usage without installation](#usage-without-installation) | 🔴 Not available | 🟢 Available |
-| [Offline usage](#offline-usage) | 🟢 Available | 🟡 Partially available |
-| [Auto-updates](#auto-updates) | 🟢 Available | 🟢 Available |
-| [Logging](#logging) | 🟢 Available | 🔴 Not available |
-| [Secure script execution/storage](#secure-script-executionstorage) | 🟢 Available | 🔴 Not available |
-| [Native dialogs](#native-dialogs) | 🟢 Available | 🔴 Not available |
+The website [anonseclab.org](https://anonseclab.org) is a separate information resource providing comprehensive guides, tutorials, and security information. It does not host the application itself.
+
+## Desktop Application Features
+
+| Feature | Availability |
+| ------- | ------------ |
+| [Offline usage](#offline-usage) | 🟢 Available |
+| [Auto-updates](#auto-updates) | 🟢 Available |
+| [Logging](#logging) | 🟢 Available |
+| [Secure script execution/storage](#secure-script-executionstorage) | 🟢 Available |
+| [Native dialogs](#native-dialogs) | 🟢 Available |
 
 ## Feature descriptions
 
-### Usage without installation
+### Installation
 
-You can use the web version directly in a browser without installation.
-The desktop version requires download and installation.
+The desktop application requires download and installation.
 
-> **Note for Linux users:** On Linux, privacy.sexy is available as an `AppImage`, a portable format that doesn't need traditional installation.
-> This allows Linux users to use the desktop version without full installation, akin to the web version.
+> **Note for Linux users:** On Linux, AnonSecLab Privacy Tools is available as an `AppImage`, a portable format that doesn't need traditional installation.
 
 ### Offline usage
 
-The web version, once loaded, supports offline use.
-Desktop version inherently allows offline usage.
+The desktop application inherently allows offline usage once installed.
 
 ### Auto-updates
 
-Both the desktop and web versions of privacy.sexy provide timely access to the latest features and security improvements. The updates are automatically deployed from source code, reflecting the latest changes for enhanced security and reliability. For more details, see [CI/CD documentation](./../ci-cd.md).
+The desktop application provides timely access to the latest features and security improvements. Updates are automatically deployed from source code, reflecting the latest changes for enhanced security and reliability. For more details, see [CI/CD documentation](./../ci-cd.md).
 
 The desktop version ensures secure delivery through cryptographic signatures and version checks.
 
-[Security is a top priority](./../../SECURITY.md#update-security-and-integrity) at privacy.sexy.
+[Security is a top priority](./../../SECURITY.md#update-security-and-integrity) at AnonSecLab Privacy Tools.
 
 > **Note for macOS users:**
 > On macOS, the desktop version's auto-update process involves manual steps due to Apple's code signing costs.
@@ -42,54 +42,52 @@ The desktop version ensures secure delivery through cryptographic signatures and
 
 ### Logging
 
-The desktop version supports logging of activities to aid in troubleshooting.
-This feature is not available in the web version.
+The desktop application supports logging of activities to aid in troubleshooting.
 
 Log file locations vary by operating system:
 
-- macOS: `$HOME/Library/Logs/privacy.sexy`
-- Linux: `$HOME/.config/privacy.sexy/logs`
-- Windows: `%APPDATA%\privacy.sexy\logs`
+- macOS: `$HOME/Library/Logs/AnonSecLab`
+- Linux: `$HOME/.config/AnonSecLab/logs`
+- Windows: `%APPDATA%\AnonSecLab\logs`
 
-> 💡 privacy.sexy provides scripts to securely erase these logs.
+> 💡 AnonSecLab Privacy Tools provides scripts to securely erase these logs.
 
 ### Secure script execution/storage
 
-The desktop version of privacy.sexy enables direct script execution, providing a seamless and integrated experience.
-This direct execution capability isn't available in the web version due to inherent browser restrictions.
+The desktop application enables direct script execution, providing a seamless and integrated experience.
 
 **Script execution history:**
 
-For enhanced auditability and easier troubleshooting, the desktop version keeps a record of executed scripts in designated directories.
+For enhanced auditability and easier troubleshooting, the desktop application keeps a record of executed scripts in designated directories.
 These locations vary based on the operating system:
 
-- macOS: `$HOME/Library/Application Support/privacy.sexy/runs`
-- Linux: `$HOME/.config/privacy.sexy/runs`
-- Windows: `%APPDATA%\privacy.sexy\runs`
+- macOS: `$HOME/Library/Application Support/AnonSecLab/runs`
+- Linux: `$HOME/.config/AnonSecLab/runs`
+- Windows: `%APPDATA%\AnonSecLab\runs`
 
-> 💡 privacy.sexy provides scripts to securely erase your script execution history.
+> 💡 AnonSecLab Privacy Tools provides scripts to securely erase your script execution history.
 
 **Script antivirus scans:**
 
-To enhance system protection, the desktop version of privacy.sexy automatically verifies the security of script
+To enhance system protection, the desktop application automatically verifies the security of script
 execution files by reading them back.
 This process triggers antivirus scans to verify that scripts are safe before the execution.
 
 **Script integrity checks:**
 
-The desktop version of privacy.sexy implements robust integrity checks for both script execution and storage.
+The desktop application implements robust integrity checks for both script execution and storage.
 Featuring tamper protection, the application actively verifies the integrity of script files before executing or saving them.
 If the actual contents of a script file do not align with the expected contents, the application refuses to execute or save the script.
 This proactive approach ensures only unaltered and verified scripts undergo processing, thereby enhancing both security and reliability.
 
 **Error handling:**
 
-The desktop version of privacy.sexy features advanced error handling capabilities.
-In scenarios where script execution or storage encounters failure, the desktop application initiates automated troubleshooting and self-healing processes.
+The desktop application features advanced error handling capabilities.
+In scenarios where script execution or storage encounters failure, the application initiates automated troubleshooting and self-healing processes.
 It employs robust and reliable execution strategies, including self-healing mechanisms, and provides guidance and troubleshooting information to resolve issues effectively.
 This proactive error handling and user guidance enhances the application's security and reliability.
 
 ### Native dialogs
 
-The desktop version uses native dialogs, offering more features and reliability compared to the browser's file system dialogs.
+The desktop application uses native dialogs, offering more features and reliability compared to browser-based file system dialogs.
 These native dialogs provide a more integrated and user-friendly experience, aligning with the operating system's standard interface and functionalities.

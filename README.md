@@ -29,29 +29,39 @@
     src="https://img.shields.io/github/license/bluectx/AnonSecLab-Privacy"
     alt="License"
   />
+  <img
+    src="https://github.com/bluectx/AnonSecLab-Privacy/workflows/release-desktop/badge.svg"
+    alt="CI"
+  />
+  <img
+    src="https://img.shields.io/badge/Maintained-yes-green.svg"
+    alt="Maintained"
+  />
+  <img
+    src="https://img.shields.io/github/last-commit/bluectx/AnonSecLab-Privacy"
+    alt="Last commit"
+  />
 </p>
 <!-- markdownlint-restore -->
 
 ## Get started
 
-- 🌍️ **Online**: [https://anonseclab.org](https://anonseclab.org).
-- 🖥️ **Offline**: Download directly for: [Windows](https://github.com/BlueCtx/anonseclab-privacy/releases/download/0.13.7/anonseclab-privacy-Setup-0.13.7.exe), [macOS](https://github.com/BlueCtx/anonseclab-privacy/releases/download/0.13.7/anonseclab-privacy-0.13.7.dmg), [Linux](https://github.com/BlueCtx/anonseclab-privacy/releases/download/0.13.7/anonseclab-privacy-0.13.7.AppImage).
+- 🖥️ **Desktop Application**: Download directly for: [Windows](https://github.com/BlueCtx/anonseclab-privacy/releases/download/0.13.7/anonseclab-privacy-Setup-0.13.7.exe), [macOS](https://github.com/BlueCtx/anonseclab-privacy/releases/download/0.13.7/anonseclab-privacy-0.13.7.dmg), [Linux](https://github.com/BlueCtx/anonseclab-privacy/releases/download/0.13.7/anonseclab-privacy-0.13.7.AppImage).
+- 🌍️ **Information & Guides**: Visit [https://anonseclab.org](https://anonseclab.org) for comprehensive guides, tutorials, and security information.
 
 See also:
 
-- [Desktop vs. Web Features](./docs/desktop/desktop-vs-web-features.md): Differences and unique aspects of desktop and web versions.
+- [Desktop Features](./docs/desktop/desktop-vs-web-features.md): Features and capabilities of the desktop application.
 - [System Requirements](./docs/desktop/system-requirements.md): Hardware and software requirements for the desktop version.
 
 💡 Regularly applying your configuration with AnonSecLab Privacy Tools is recommended, especially after each new release and major operating system updates. Each version updates scripts to enhance stability, privacy, and security.
 
 <p align="center">
-  <a href="https://anonseclab.org" target="_blank" rel="noopener noreferrer">
-    <img
-      alt="AnonSecLab Privacy Tools application"
-      src="img/screenshot.png?raw=true"
-      style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
-    />
-  </a>
+  <img
+    alt="AnonSecLab Privacy Tools application"
+    src="img/screenshot.png?raw=true"
+    style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
+  />
 </p>
 
 ## Features
