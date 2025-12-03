@@ -19,7 +19,7 @@
           Browsers may warn you when downloading scripts.
         </p>
         <p>
-          AnonSecLab Privacy Tools scripts are verified to be safe and are dedicated to securing your privacy.
+          AnonSecLab Privacy Tools scripts are verified safe and dedicated to securing your privacy.
         </p>
         <p>
           In <strong>Edge</strong>:

@@ -39,7 +39,7 @@ export default defineComponent({
   },
   setup() {
     const { log } = injectKey((keys) => keys.useLogger);
-    const isOpen = ref(true);
+    const isOpen = ref(false);
     const scrollbarGutterWidth = useScrollbarGutterWidth();
     const { application } = injectKey((keys) => keys.useApplication);
 
