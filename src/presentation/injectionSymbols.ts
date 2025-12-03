@@ -11,6 +11,7 @@ import type { useCodeRunner } from '@/presentation/components/Shared/Hooks/UseCo
 import type { useDialog } from '@/presentation/components/Shared/Hooks/Dialog/UseDialog';
 import type { useScriptDiagnosticsCollector } from '@/presentation/components/Shared/Hooks/UseScriptDiagnosticsCollector';
 import type { useAutoUnsubscribedEventListener } from '@/presentation/components/Shared/Hooks/UseAutoUnsubscribedEventListener';
+import type { useNotificationService } from '@/presentation/components/Shared/Hooks/Notifications/UseNotificationService';
 
 export const InjectionKeys = {
   useCollectionState: defineTransientKey<ReturnType<typeof useCollectionState>>('useCollectionState'),
@@ -25,6 +26,7 @@ export const InjectionKeys = {
   useDialog: defineTransientKey<ReturnType<typeof useDialog>>('useDialog'),
   useScriptDiagnosticsCollector: defineTransientKey<ReturnType<typeof useScriptDiagnosticsCollector>>('useScriptDiagnostics'),
   useAutoUnsubscribedEventListener: defineTransientKey<ReturnType<typeof useAutoUnsubscribedEventListener>>('useAutoUnsubscribedEventListener'),
+  useNotificationService: defineTransientKey<ReturnType<typeof useNotificationService>>('useNotificationService'),
 };
 
 export interface InjectionKeyWithLifetime<T> {

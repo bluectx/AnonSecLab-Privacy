@@ -17,6 +17,7 @@ import { CurrentEnvironment } from '@/infrastructure/RuntimeEnvironment/RuntimeE
 import { useDialog } from '@/presentation/components/Shared/Hooks/Dialog/UseDialog';
 import { useScriptDiagnosticsCollector } from '@/presentation/components/Shared/Hooks/UseScriptDiagnosticsCollector';
 import { useAutoUnsubscribedEventListener } from '@/presentation/components/Shared/Hooks/UseAutoUnsubscribedEventListener';
+import { useNotificationService } from '@/presentation/components/Shared/Hooks/Notifications/UseNotificationService';
 
 export function provideDependencies(
   context: IApplicationContext,
@@ -77,6 +78,10 @@ export function provideDependencies(
     useScriptDiagnosticsCollector: (di) => di.provide(
       InjectionKeys.useScriptDiagnosticsCollector,
       useScriptDiagnosticsCollector,
+    ),
+    useNotificationService: (di) => di.provide(
+      InjectionKeys.useNotificationService,
+      useNotificationService,
     ),
     useAutoUnsubscribedEventListener: (di) => di.provide(
       InjectionKeys.useAutoUnsubscribedEventListener,
