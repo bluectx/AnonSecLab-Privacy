@@ -132,7 +132,7 @@ async function generateDesktopIcons(sourceImage, electronBuildResourcesDirectory
   );
 }
 
-async function generateAppLogoSvg(sourceImage, targetSvgFile, convertCommand) {
+async function generateAppLogoSvg(sourceImage, targetSvgFile) {
   await ensureFileExists(sourceImage);
   await ensureParentFolderExists(targetSvgFile);
   if (sourceImage.endsWith('.svg')) {
