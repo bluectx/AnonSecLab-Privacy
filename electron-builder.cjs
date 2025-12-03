@@ -39,10 +39,10 @@ module.exports = {
     target: 'AppImage',
     icon: resolvePathFromProjectRoot('src/presentation/electron/build/icon.png'),
     category: 'Utility',
+    executableName: 'anonseclab-privacy',
     desktop: {
       Icon: 'anonseclab-privacy',
       Name: 'AnonSecLab Privacy Tools',
-      Exec: 'anonseclab-privacy',
     },
   },
   appImage: {
