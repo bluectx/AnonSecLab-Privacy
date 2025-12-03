@@ -31,9 +31,13 @@ jobs:
         name: Prebuild
         run: npm run electron:prebuild
       -
-        name: Build and publish
+        name: Build
+        run: npm run electron:build -- --publish never
+        shell: bash
+      -
+        name: Publish to GitHub Release
         run: npm run electron:build -- --publish always
-        shell: bash # Required for correct argument passing (--)
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EP_GH_IGNORE_TIME: true # Otherwise publishing fails if GitHub release is more than 2 hours old https://github.com/electron-userland/electron-builder/issues/2074
+          EP_GH_IGNORE_TIME: true
