@@ -39,4 +39,5 @@ const MimeTypes: Record<FileType, string> = {
   // otherwise they ignore extension and save the file as text.
   [FileType.BatchFile]: 'application/bat', // https://en.wikipedia.org/wiki/Batch_file
   [FileType.ShellScript]: 'text/x-shellscript', // https://de.wikipedia.org/wiki/Shellskript#MIME-Typ
+  [FileType.Json]: 'application/json',
 } as const;

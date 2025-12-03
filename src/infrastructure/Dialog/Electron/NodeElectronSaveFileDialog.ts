@@ -140,7 +140,7 @@ export interface NodePathOperations {
   readonly join: typeof join;
 }
 
-function getDialogFileFilters(fileType: FileType): Electron.FileFilter[] {
+export function getDialogFileFilters(fileType: FileType): Electron.FileFilter[] {
   const filters = FileTypeSpecificFilters[fileType];
   return [
     ...filters,
@@ -162,6 +162,12 @@ const FileTypeSpecificFilters: Record<FileType, Electron.FileFilter[]> = {
     {
       name: 'Shell Scripts',
       extensions: ['sh', 'bash', 'zsh'],
+    },
+  ],
+  [FileType.Json]: [
+    {
+      name: 'JSON Files',
+      extensions: ['json'],
     },
   ],
 };

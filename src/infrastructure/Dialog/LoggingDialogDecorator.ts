@@ -33,4 +33,15 @@ class LoggingDialogDecorator implements Dialog {
     this.logger.error(`Showing error dialog: ${title} - ${message}`);
     this.dialog.showError(title, message);
   }
+
+  public async openFile(fileType: FileType) {
+    this.logger.info(`Opening file dialog for type: ${fileType}.`);
+    const dialogResult = await this.dialog.openFile(fileType);
+    if (dialogResult.success) {
+      this.logger.info('File opening process completed successfully.');
+    } else {
+      this.logger.error('Error encountered while opening the file.', dialogResult.error);
+    }
+    return dialogResult;
+  }
 }
