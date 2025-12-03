@@ -48,7 +48,6 @@ module.exports = {
   },
   appImage: {
     artifactName: '${name}-${version}.${ext}',
-    systemIntegration: 'ask',
   },
 
   // macOS
