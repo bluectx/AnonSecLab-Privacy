@@ -14,9 +14,9 @@
       </div>
       <div class="footer__section">
         <div class="footer__section__item">
-          <a :href="feedbackUrl" target="_blank" rel="noopener noreferrer">
-            <AppIcon class="icon" icon="face-smile" />
-            <span>Feedback</span>
+          <a href="https://www.anonseclab.org/guides/fr/daily.html" target="_blank" rel="noopener noreferrer">
+            <AppIcon class="icon" icon="circle-info" />
+            <span>Opsec Guides</span>
           </a>
         </div>
         <div class="footer__section__item">
@@ -39,6 +39,9 @@
             @click="showPrivacyDialog()"
           />
         </div>
+        <div class="footer__section__item">
+          <StatisticsButton />
+        </div>
       </div>
     </div>
     <ModalDialog v-model="isPrivacyDialogVisible">
@@ -55,6 +58,7 @@ import ModalDialog from '@/presentation/components/Shared/Modal/ModalDialog.vue'
 import AppIcon from '@/presentation/components/Shared/Icon/AppIcon.vue';
 import { injectKey } from '@/presentation/injectionSymbols';
 import FlatButton from '@/presentation/components/Shared/FlatButton.vue';
+import StatisticsButton from '@/presentation/components/Statistics/StatisticsButton.vue';
 import DownloadUrlList from './DownloadUrlList.vue';
 import PrivacyPolicy from './PrivacyPolicy.vue';
 
@@ -65,6 +69,7 @@ export default defineComponent({
     DownloadUrlList,
     AppIcon,
     FlatButton,
+    StatisticsButton,
   },
   setup() {
     const { projectDetails } = injectKey((keys) => keys.useApplication);
@@ -80,8 +85,6 @@ export default defineComponent({
 
     const releaseUrl = computed<string>(() => projectDetails.releaseUrl);
 
-    const feedbackUrl = computed<string>(() => projectDetails.feedbackUrl);
-
     function showPrivacyDialog() {
       isPrivacyDialogVisible.value = true;
     }
@@ -94,7 +97,6 @@ export default defineComponent({
       homepageUrl,
       repositoryUrl,
       releaseUrl,
-      feedbackUrl,
     };
   },
 });
