@@ -87,6 +87,13 @@ describe('NodeElectronSaveFileDialog', () => {
             extensions: ['sh', 'bash', 'zsh'],
           },
         ],
+        [FileType.Json]: [
+          defaultFilter,
+          {
+            name: 'JSON Files',
+            extensions: ['json'],
+          },
+        ],
       };
       Object.entries(testScenarios).forEach(([fileTypeKey, expectedFilters]) => {
         const fileType = Number(fileTypeKey) as FileType;

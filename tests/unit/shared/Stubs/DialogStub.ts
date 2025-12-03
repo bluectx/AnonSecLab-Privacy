@@ -1,4 +1,4 @@
-import type { Dialog, SaveFileOutcome } from '@/presentation/common/Dialog';
+import type { Dialog, SaveFileOutcome, OpenFileOutcome } from '@/presentation/common/Dialog';
 import { StubWithObservableMethodCalls } from './StubWithObservableMethodCalls';
 
 export class DialogStub
@@ -18,6 +18,17 @@ export class DialogStub
     this.registerMethodCall({
       methodName: 'showError',
       args: [...args],
+    });
+  }
+
+  public openFile(...args: Parameters<Dialog['openFile']>): Promise<OpenFileOutcome> {
+    this.registerMethodCall({
+      methodName: 'openFile',
+      args: [...args],
+    });
+    return Promise.resolve({
+      success: true,
+      fileContents: '',
     });
   }
 }

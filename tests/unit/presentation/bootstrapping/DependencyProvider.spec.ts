@@ -27,6 +27,7 @@ describe('DependencyProvider', () => {
       useDialog: createTransientTests(),
       useScriptDiagnosticsCollector: createTransientTests(),
       useAutoUnsubscribedEventListener: createTransientTests(),
+      useNotificationService: createTransientTests(),
     };
     Object.entries(testCases).forEach(([key, runTests]) => {
       const injectionKey = key as InjectionKeyType;

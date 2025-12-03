@@ -57,6 +57,7 @@ describe('ElectronDialog', () => {
         showErrorBox: (...args) => {
           actualShowErrorArgs = args;
         },
+        showOpenDialog: async () => ({ canceled: true, filePaths: [] }),
       };
       const electronDialog = new ElectronDialogBuilder()
         .withElectron(electronDialogAccessorSpy)
@@ -82,6 +83,7 @@ function createTestSaveFileArguments(): Parameters<ElectronSaveFileDialog['saveF
 class ElectronDialogBuilder {
   private electron: ElectronDialogAccessor = {
     showErrorBox: () => {},
+    showOpenDialog: async () => ({ canceled: true, filePaths: [] }),
   };
 
   private saveFileDialog: ElectronSaveFileDialog = {
