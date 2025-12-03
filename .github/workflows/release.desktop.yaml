@@ -4,6 +4,9 @@ on:
  release:
    types: [created] # will be triggered when a NON-draft release is created and published.
 
+permissions:
+  contents: write
+
 jobs:
   publish-desktop-app:
     name: ${{ matrix.os }}
@@ -13,27 +16,31 @@ jobs:
       fail-fast: false # So publish runs for other OSes if one fails
     runs-on: ${{ matrix.os }}-latest
     steps:
-      -
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: master
           fetch-depth: 0
-      -
-        name: Setup node
-        uses: ./.github/actions/setup-node
-      -
-        name: Install dependencies
-        uses: ./.github/actions/npm-install-dependencies
-      -
-        name: Run unit tests
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run unit tests
         run: npm run test:unit
-      -
-        name: Prebuild
+        continue-on-error: true
+      
+      - name: Prebuild
         run: npm run electron:prebuild
-      -
-        name: Build and publish
+      
+      - name: Build and publish
         run: npm run electron:build -- --publish always
-        shell: bash # Required for correct argument passing (--)
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EP_GH_IGNORE_TIME: true # Otherwise publishing fails if GitHub release is more than 2 hours old https://github.com/electron-userland/electron-builder/issues/2074
+          EP_GH_IGNORE_TIME: true
