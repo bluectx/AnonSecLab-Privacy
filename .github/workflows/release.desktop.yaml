@@ -16,8 +16,12 @@ jobs:
       -
         uses: actions/checkout@v4
         with:
-          ref: master
-          fetch-depth: 0
+          ref: master # otherwise it defaults to the version tag missing bump commit
+          fetch-depth: 0 # fetch all history
+      -
+        name: Checkout to bump commit
+        shell: bash
+        run: git checkout "$(git rev-list "${{ github.event.release.tag_name }}"..master | tail -1)"
       -
         name: Setup node
         uses: ./.github/actions/setup-node
@@ -31,13 +35,9 @@ jobs:
         name: Prebuild
         run: npm run electron:prebuild
       -
-        name: Build
-        run: npm run electron:build -- --publish never
-        shell: bash
-      -
-        name: Publish to GitHub Release
+        name: Build and publish
         run: npm run electron:build -- --publish always
-        shell: bash
+        shell: bash # Required for correct argument passing (--)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EP_GH_IGNORE_TIME: true
+          EP_GH_IGNORE_TIME: true # Otherwise publishing fails if GitHub release is more than 2 hours old https://github.com/electron-userland/electron-builder/issues/2074

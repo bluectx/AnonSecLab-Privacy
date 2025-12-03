@@ -12,8 +12,6 @@ module.exports = {
   // Common options
   publish: {
     provider: 'github',
-    owner: 'BlueCtx',
-    repo: 'anonseclab-privacy',
     vPrefixedTagName: false, // default: true
     releaseType: 'release', // default: draft
   },
@@ -30,7 +28,6 @@ module.exports = {
   // Windows
   win: {
     target: 'nsis',
-    icon: resolvePathFromProjectRoot('src/presentation/electron/build/icon.ico'),
   },
   nsis: {
     artifactName: '${name}-Setup-${version}.${ext}',
@@ -39,13 +36,6 @@ module.exports = {
   // Linux
   linux: {
     target: 'AppImage',
-    icon: resolvePathFromProjectRoot('src/presentation/electron/build/icon.png'),
-    category: 'Utility',
-    executableName: 'anonseclab-privacy',
-    desktop: {
-      Icon: 'anonseclab-privacy',
-      Name: 'AnonSecLab Privacy Tools',
-    },
   },
   appImage: {
     artifactName: '${name}-${version}.${ext}',
@@ -57,7 +47,6 @@ module.exports = {
       target: 'dmg',
       arch: 'universal',
     },
-    icon: resolvePathFromProjectRoot('src/presentation/electron/build/icon.png'),
   },
   dmg: {
     artifactName: '${name}-${version}.${ext}',
