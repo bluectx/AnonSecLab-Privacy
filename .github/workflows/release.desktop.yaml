@@ -16,12 +16,8 @@ jobs:
       -
         uses: actions/checkout@v4
         with:
-          ref: master # otherwise it defaults to the version tag missing bump commit
-          fetch-depth: 0 # fetch all history
-      -
-        name: Checkout to bump commit
-        shell: bash
-        run: git checkout "$(git rev-list "${{ github.event.release.tag_name }}"..master | tail -1)"
+          ref: master
+          fetch-depth: 0
       -
         name: Setup node
         uses: ./.github/actions/setup-node
