@@ -1,6 +1,6 @@
 {
   "name": "anonseclab-privacy",
-  "version": "0.13.7",
+  "version": "0.13.8",
   "private": true,
   "slogan": "AnonSecLab Privacy Tools",
   "description": "Enforce privacy & security best-practices on Windows, macOS and Linux.",
