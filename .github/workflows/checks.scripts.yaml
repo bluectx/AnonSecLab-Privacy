@@ -1,0 +1,85 @@
+name: checks.scripts
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  icons-build:
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        os: [macos, ubuntu, windows]
+      fail-fast: false # Still interested to see results from other combinations
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Install ImageMagick
+        uses: ./.github/actions/install-imagemagick
+      -
+        name: Setup node
+        uses: ./.github/actions/setup-node
+      -
+        name: Install dependencies
+        uses: ./.github/actions/npm-install-dependencies
+      -
+        name: Create icons
+        run: npm run icons:build
+
+  install-deps:
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      matrix:
+        install-deps-before: [true, false]
+        install-command:
+          - npm run install-deps
+          - npm run install-deps -- --no-errors
+          - npm run install-deps -- --ci
+          - npm run install-deps -- --fresh --non-deterministic
+          - npm run install-deps -- --fresh
+          - npm run install-deps -- --non-deterministic
+        os: [ macos, ubuntu, windows ]
+      fail-fast: false # Still interested to see results from other combinations
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Setup node
+        uses: ./.github/actions/setup-node
+      -
+        name: Install dependencies
+        if: matrix.install-deps-before == true
+        uses: ./.github/actions/npm-install-dependencies
+      -
+        name: Run install-deps
+        shell: bash # Required for correct argument passing (--)
+        run: ${{ matrix.install-command }}
+
+  configure-vscode:
+    runs-on: ${{ matrix.os.name }}-latest
+    strategy:
+      matrix:
+        os:
+          - name: macos
+            install-vscode-command: brew install --cask visual-studio-code
+          - name: ubuntu
+            install-vscode-command: sudo snap install code --classic
+          - name: windows
+            install-vscode-command: choco install vscode
+      fail-fast: false # Still interested to see results from other combinations
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Setup node
+        uses: ./.github/actions/setup-python
+      -
+        name: Install VSCode
+        run: ${{ matrix.os.install-vscode-command }}
+      -
+        name: Configure VSCode
+        run: python3 ./scripts/configure_vscode.py

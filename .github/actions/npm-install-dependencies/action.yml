@@ -1,0 +1,17 @@
+inputs:
+  working-directory:
+    required: false
+    default: '.'
+runs:
+  using: composite
+  steps:
+    -
+      name: Update Browserslist DB
+      shell: bash
+      run: npx update-browserslist-db@latest
+      working-directory: ${{ inputs.working-directory }}
+    -
+      name: Run `npm ci` with retries
+      shell: bash # Required for correct argument passing (--)
+      run: npm run install-deps -- --ci
+      working-directory: ${{ inputs.working-directory }}

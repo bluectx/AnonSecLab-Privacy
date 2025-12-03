@@ -1,0 +1,63 @@
+@use 'sass:math';
+@use "../spacing" as *;
+
+@mixin no-margin($selectors) {
+  #{$selectors} {
+    margin: 0;
+  }
+}
+
+@mixin no-padding($selectors) {
+  #{$selectors} {
+    padding: 0;
+  }
+}
+
+@mixin left-padding($selectors, $horizontal-spacing) {
+  #{$selectors} {
+    padding-inline-start: $horizontal-spacing;
+  }
+}
+
+@mixin bottom-margin($selectors, $vertical-spacing) {
+  #{$selectors} {
+    &:not(:last-child) {
+      margin-bottom: $vertical-spacing;
+    }
+  }
+}
+
+@mixin apply-uniform-vertical-spacing {
+  /* Reset default top/bottom margins added by browser. */
+  @include no-margin('p');
+  @include no-margin('h1, h2, h3, h4, h5, h6');
+  @include no-margin('blockquote');
+  @include no-margin('pre');
+  @include no-margin('hr');
+  @include no-margin('ul, ol');
+
+  /* Add spacing between elements using `margin-bottom` only (bottom-up instead of top-down strategy). */
+  @include bottom-margin('p', $spacing-relative-medium);
+  @include bottom-margin('li > p', $spacing-relative-small); // Reduce margin for paragraphs directly within list items to visually group related content.
+  @include bottom-margin('h1, h2, h3, h4, h5, h6', $spacing-relative-small);
+  @include bottom-margin('ul, ol', $spacing-relative-medium);
+  @include bottom-margin('li', $spacing-relative-small);
+  @include bottom-margin('table', $spacing-relative-medium);
+  @include bottom-margin('blockquote', $spacing-relative-medium);
+  @include bottom-margin('pre', $spacing-relative-medium);
+  @include bottom-margin('article', $spacing-relative-medium);
+  @include bottom-margin('hr', $spacing-relative-medium);
+}
+
+@mixin apply-uniform-horizontal-spacing {
+  /* Reset default left/right paddings added by browser. */
+  @include no-padding('ul, ol');
+
+  /* Add spacing for list items. */
+  @include left-padding('ul, ol', $spacing-relative-large);
+}
+
+@mixin apply-uniform-spacing {
+  @include apply-uniform-vertical-spacing;
+  @include apply-uniform-horizontal-spacing;
+}

@@ -1,0 +1,9 @@
+runs:
+  using: composite
+  steps:
+    -
+      name: Setup node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+        # check-latest: true # Newest versions can potentially have undiscovered bugs or regressions

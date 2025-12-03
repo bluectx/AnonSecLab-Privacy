@@ -1,0 +1,33 @@
+root = true # Top-most EditorConfig file
+
+[*]
+end_of_line = lf
+
+[*.{js,jsx,ts,tsx,vue,sh,scss}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 100
+
+[{Dockerfile}]
+indent_style = space
+indent_size = 4
+
+[*.py]
+indent_size = 4 # PEP 8 (the official Python style guide) recommends using 4 spaces per indentation level
+indent_style = space
+max_line_length = 100
+
+[*.ps1]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{scss}] # SASS guidelines: https://archive.ph/2024.02.16-232553/https://sass-guidelin.es/
+indent_style = space
+indent_size = 2 # Recommended by SASS guidelines
+max_line_length = 100 # Recommended by SASS guidelines
+trim_trailing_whitespace = true
+insert_final_newline = true

@@ -1,0 +1,135 @@
+@use "@/presentation/assets/styles/colors" as *;
+@use "@/presentation/assets/styles/typography" as *;
+
+@mixin hover-or-touch($selector-suffix: '', $selector-prefix: '&') {
+  @media (hover: hover) {
+    /*
+      Only apply hover styles if the device truly supports hover; otherwise the
+      emulator in mobile keeps hovered style in-place even after touching, making it sticky.
+    */
+    #{$selector-prefix}:hover #{$selector-suffix} {
+      @content;
+    }
+  }
+
+  @media (hover: none) {
+    /*
+      Apply active styles on touch or click, ensuring interactive feedback on devices without hover capability.
+    */
+    #{$selector-prefix}:active #{$selector-suffix} {
+      @content;
+    }
+  }
+}
+
+/*
+  This mixin removes the default blue tap highlight seen in mobile WebKit browsers (e.g., Chrome, Safari, Edge).
+  The mixin by itself may reduce accessibility by hiding this interactive cue. Therefore, it is recommended
+  to use this mixin in conjunction with the `hover-or-touch` mixin to provide necessary visual feedback
+  for interactive elements during hover or touch interactions.
+*/
+@mixin clickable($cursor: 'pointer') {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; // Removes blue tap highlight
+  cursor: #{$cursor};
+}
+
+@mixin fade-transition($name) {
+  .#{$name}-enter-active,
+  .#{$name}-leave-active {
+    transition: opacity 0.3s ease;
+  }
+
+  .#{$name}-enter-from,
+  .#{$name}-leave-to {
+    opacity: 0;
+  }
+}
+
+@mixin fade-slide-transition($name, $duration, $offset-upward: null) {
+
+  .#{$name}-enter-active,
+  .#{$name}-leave-active {
+    transition: all $duration;
+  }
+
+  .#{$name}-leave-active,
+  .#{$name}-enter-from {
+    opacity: 0;
+
+    @if $offset-upward {
+      transform: translateY($offset-upward);
+    }
+  }
+}
+
+@mixin reset-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin reset-sup {
+  vertical-align: unset;
+  font-size: unset;
+}
+
+@mixin reset-button {
+  margin: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  font: unset;
+  border: unset;
+  background: unset;
+  align-items: unset;
+  text-align: unset;
+  text-shadow: unset;
+  text-rendering: unset;
+  color: inherit;
+  writing-mode: unset;
+  letter-spacing: unset;
+  word-spacing: unset;
+  line-height: unset;
+  text-transform: unset;
+  text-indent: unset;
+  appearance: unset;
+  cursor: unset;
+}
+
+@mixin flat-button($disabled: false) {
+  @include reset-button;
+  $font-size: $font-size-absolute-normal;
+
+  @if $disabled {
+    color: $color-primary-light;
+  } @else {
+    color: inherit;
+    @include clickable;
+    @include hover-or-touch {
+      text-decoration: underline;
+      color: $color-highlight;
+      /*
+        Using color change and underlining and as hover cues instead of bold text,
+        due to inconsistent bold rendering in macOS browsers:
+          - Safari: Renders bold, causes layout shift.
+          - Firefox: Renders bold correctly, no layout shift.
+          - Chromium-based browsers (including Electron app): Do not render bold, no layout shift.
+      */
+    }
+  }
+}
+
+@mixin set-property-ch-value-with-fallback($property, $value-in-ch) {
+  // For browsers that do not support `ch` unit (e.g., Opera Mini):
+  $estimated-width-per-character-in-em: calc(1em / 2); // 1 character is approximately half the font size
+  $calculated-width-in-em: calc(#{$estimated-width-per-character-in-em} * #{$value-in-ch});
+  #{$property}: $calculated-width-in-em;
+  @supports (width: 1ch) {
+    #{$property}: #{$value-in-ch}ch; // Override `em` value if `ch` is supported.
+  }
+}
+
+@mixin base-font-style {
+  font-family: $font-family-main;
+  font-size: $font-size-absolute-normal;
+}

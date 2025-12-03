@@ -1,0 +1,69 @@
+/*
+  Defines global styles that applies to globally defined tags by default (body, main, article, div etc.).
+  Styles Fundamental HTML elements.
+  Contains foundational CSS rules that have a broad impact on the project's styling.
+  CSS Base applies a style foundation for HTML elements that is consistent for baseline browsers
+*/
+
+@use "../colors" as *;
+@use "../mixins" as *;
+@use "../vite-path" as *;
+@use "../typography" as *;
+@use "../spacing" as *;
+@use "_code-styling" as *;
+@use "_margin-padding" as *;
+@use "_link-styling" as *;
+@use "_prevent-scrollbar-layout-shift" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  @include prevent-scrollbar-layout-shift;
+}
+
+body {
+  background: $color-background;
+  @include base-font-style;
+  @include apply-uniform-spacing;
+}
+
+input {
+  font-family: unset; // Reset browser default
+}
+
+blockquote {
+  padding: 0 $spacing-relative-medium;
+  border-left: $spacing-absolute-x-small solid $color-primary;
+}
+
+@include style-code-elements(
+  $code-block-padding: $spacing-relative-medium,
+  $color-background: $color-primary-darker,
+);
+
+hr {
+  opacity: 0.6;
+}
+
+sup {
+  @include reset-sup;
+
+  vertical-align: super;
+  font-size: $font-size-relative-smallest;
+}
+
+kbd {
+  font-family: unset; // Reset the default browser styles
+  background-color: $color-primary-dark;
+  border: 1px solid $color-primary-darker;
+  border-radius: 0.2em;
+  box-shadow: inset 0 1px 0 0 $color-primary-dark, inset 0 -2px 0 0 $color-primary-darker;
+  font-family: $font-family-monospace;
+  font-size: $font-size-relative-smallest;
+  padding: $spacing-relative-x-small $spacing-relative-x-small;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+}

@@ -1,0 +1,30 @@
+name: checks.external-urls
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * 0' # at 00:00 on every Sunday
+
+jobs:
+  run-check:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Setup node
+        uses: ./.github/actions/setup-node
+      -
+        name: Install dependencies
+        uses: ./.github/actions/npm-install-dependencies
+      -
+        name: Enforce IPv4 Connectivity # Used due to GitHub runners' lack of IPv6 support, preventing request timeouts.
+        uses: ./.github/actions/force-ipv4
+      -
+        name: Test
+        run: npm run check:external-urls
+        env:
+          RANDOMIZED_URL_CHECK_LIMIT: "${{ github.event_name == 'push' && '100' || '3000' }}"
+          # - Scheduled checks has high limit for thorough testing.
+          # - For push events, triggered by code changes, the amount of URLs are limited to provide quick feedback.
