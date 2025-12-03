@@ -12,6 +12,8 @@ module.exports = {
   // Common options
   publish: {
     provider: 'github',
+    owner: 'BlueCtx',
+    repo: 'anonseclab-privacy',
     vPrefixedTagName: false, // default: true
     releaseType: 'release', // default: draft
   },
