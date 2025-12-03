@@ -18,3 +18,4 @@ node_modules
 # Python
 __pycache__
 .venv*.sh
+*.sh

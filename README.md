@@ -15,6 +15,12 @@
     src="https://views-counter.vercel.app/badge?pageId=AnonSecLab&leftColor=0D0D0D&rightColor=66CCFF&type=total&label=Views&style=none"
     alt="Views Counter"
   />
+  <a href="https://github.com/bluectx/AnonSecLab-Privacy/releases/" target="_blank" rel="noopener noreferrer">
+    <img
+      src="https://img.shields.io/github/downloads/bluectx/AnonSecLab-Privacy/total.svg"
+      alt="GitHub all releases"
+    />
+  </a>
 </p>
 <!-- markdownlint-restore -->
 
