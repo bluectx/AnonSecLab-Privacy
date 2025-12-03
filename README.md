@@ -21,6 +21,14 @@
       alt="GitHub all releases"
     />
   </a>
+  <img
+    src="https://img.shields.io/github/package-json/v/bluectx/AnonSecLab-Privacy"
+    alt="Version"
+  />
+  <img
+    src="https://img.shields.io/github/license/bluectx/AnonSecLab-Privacy"
+    alt="License"
+  />
 </p>
 <!-- markdownlint-restore -->
 
@@ -69,3 +77,7 @@ The [docs/](./docs/) folder contains all remaining documentation.
 ## Security
 
 Security is an absolute priority at AnonSecLab Privacy Tools. A significant commitment to security verification ensures this priority. For any security questions or vulnerabilities, please consult the [security policy](./SECURITY.md).
+
+## Credits
+
+This project is based on [privacy.sexy](https://privacy.sexy), an open-source privacy tool.

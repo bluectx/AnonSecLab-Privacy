@@ -38,6 +38,13 @@ module.exports = {
   // Linux
   linux: {
     target: 'AppImage',
+    icon: resolvePathFromProjectRoot('src/presentation/electron/build/icon.png'),
+    category: 'Utility',
+    desktop: {
+      Name: 'AnonSecLab Privacy Tools',
+      Comment: 'Enforce privacy & security best-practices',
+      Categories: 'Utility;Security;',
+    },
   },
   appImage: {
     artifactName: '${name}-${version}.${ext}',

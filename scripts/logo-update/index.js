@@ -16,6 +16,7 @@
 
 import { resolve, join, dirname } from 'node:path';
 import { stat } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { URL, fileURLToPath } from 'node:url';
 import electronBuilderConfig from '../../electron-builder.cjs';
 import { optimizeSvg } from './svg-optimizer.js'; // eslint-disable-line import/extensions
@@ -26,7 +27,9 @@ const DesktopTrayIconSize = '512x512';
 class ImageAssetPaths {
   constructor(currentScriptDirectory) {
     const projectRoot = resolve(currentScriptDirectory, '../../');
-    this.sourceImage = join(projectRoot, 'img/logo.svg');
+    const logoPng = join(projectRoot, 'img/logo.png');
+    const logoSvg = join(projectRoot, 'img/logo.svg');
+    this.sourceImage = existsSync(logoPng) ? logoPng : logoSvg;
     this.publicDirectory = join(projectRoot, 'src/presentation/public');
     this.electronBuildResourcesDirectory = electronBuilderConfig.directories.buildResources;
   }
@@ -129,16 +132,29 @@ async function generateDesktopIcons(sourceImage, electronBuildResourcesDirectory
   );
 }
 
-async function generateAppLogoSvg(sourceImage, targetSvgFile) {
+async function generateAppLogoSvg(sourceImage, targetSvgFile, convertCommand) {
   await ensureFileExists(sourceImage);
   await ensureParentFolderExists(targetSvgFile);
-  // Use ImageMagick to do basic SVG processing
-  // This won't do extensive optimization but can clean up some aspects
-  await optimizeSvg(
-    sourceImage,
-    targetSvgFile,
-  );
-  console.log(`Created optimized SVG at ${targetSvgFile}`);
+  if (sourceImage.endsWith('.svg')) {
+    // Use ImageMagick to do basic SVG processing
+    // This won't do extensive optimization but can clean up some aspects
+    await optimizeSvg(
+      sourceImage,
+      targetSvgFile,
+    );
+    console.log(`Created optimized SVG at ${targetSvgFile}`);
+  } else {
+    // For PNG, convert to SVG (simple approach: embed as base64)
+    const { readFile } = await import('node:fs/promises');
+    const pngData = await readFile(sourceImage);
+    const base64 = pngData.toString('base64');
+    const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512">
+  <image xlink:href="data:image/png;base64,${base64}" width="512" height="512"/>
+</svg>`;
+    const { writeFile } = await import('node:fs/promises');
+    await writeFile(targetSvgFile, svgContent);
+    console.log(`Created SVG from PNG at ${targetSvgFile}`);
+  }
 }
 
 async function ensureFileExists(filePath) {
