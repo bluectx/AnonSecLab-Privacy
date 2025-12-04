@@ -1,8 +1,8 @@
 name: release-desktop
 
 on:
- release:
-   types: [created] # will be triggered when a NON-draft release is created and published.
+  release:
+    types: [created]
 
 permissions:
   contents: write
@@ -13,13 +13,13 @@ jobs:
     strategy:
       matrix:
         os: [macos, ubuntu, windows]
-      fail-fast: false # So publish runs for other OSes if one fails
+      fail-fast: false
     runs-on: ${{ matrix.os }}-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: ${{ github.event.release.tag_name }}
           fetch-depth: 0
       
       - name: Setup Node.js
